@@ -3,7 +3,8 @@ import time
 import pandas as pd
 import random
 
-from transformers import pipeline, set_seed
+# from transformers import pipeline, set_seed
+from transformers import pipeline
 from grammarbot import GrammarBotClient
 from textblob import TextBlob
 
@@ -21,7 +22,7 @@ def load_model():
         The pre-trained GPT-2 model
     '''
     model = pipeline('text-generation', model='gpt2')
-    set_seed(42)
+    # set_seed(42)
     return model
 
 

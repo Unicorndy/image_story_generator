@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 from img2_caption import load_models, predict
 from PIL import Image
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import matplotlib 
+matplotlib.use('Agg')
 
 # GPT2 Module
 from gpt2 import generate_story, load_model, create_paragraphing_html

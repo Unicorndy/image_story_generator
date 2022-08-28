@@ -147,10 +147,11 @@ regex>=2020.7.14
 
 The list of prequisites and versions can also be found in the requirements.txt file
 
-To install the required packages, please use the following code:
+To create the conda environment with the required packages, please use the following code:
 
 ```
-conda install --file requirements.txt
+conda env create -f conda.yml
+conda activate imagecaption
 ```
   
     
