@@ -303,62 +303,76 @@ def random_narrative_hook():
     text : str
         A random narrative hook that is dramatic.
     '''
-    try:
-        # (i) narrative hooks from datasets online
-        dramatic = pd.read_csv('hooks.csv')
-        # random = int(time.time())%100
-        hook = dramatic.sample(1).opening_line.values[0]
-    except:
-        # (ii) default narrative hooks
-        dramatic = ["I didn't mean to kill her.",
-                    "A shrill cry echoed in the mist.",
-                    "Don't ask me how, but I remember the day I was born.",
-                    "I still remember the day I died.",
-                    "I still remember how I discovered about my past life.",
-                    "I opened my eyes and had no idea where I was.",
-                    "I had the same dream every night and it was scaring me.",
-                    "'Is this it?' I thought to myself.",
-                    "'This cannot be happening.' I thought to myself.",
-                    "There was a secret meeting tonight.",
-                    "By the time this story ends, five persons' lives will be changed forever, including yours.",
-                    "It was the year of electrocution.",
-                    "It was the year 2020.",
-                    "It was the year humans discovered the secrets laying beneath the ear of the Great Sphinx of Giza.",
-                    "It was the the day that led to Earth's last human civilisation.",
-                    "It was the year COVID-19 pandemic finally ended.",
-                    "It was the day that led to the Moon's crash onto Earth.",
-                    "It was the day that led to Donald Trump's presidency.",
-                    "It was the day that led to the COVID-19 pandemic.",
-                    "It was the day the aliens arrived.",
-                    "I am an inmate at a mental hospital: this is what happens in my mind, every day.",
-                    "I went back in time.",
-                    "I am doing it again, but this time there will be no witnesses.",
-                    "I had never seen a ghost.  But like they say, there is a first time for everything.",
-                    "Am I in heaven?  What happened to me?",
-                    "I couldn't tell if I was in one of my dreams or reality.",
-                    "'You were a key eyewitness to this major accident. Please tell our viewers what you saw.'",
-                    "My neighbour says my cat is threatening to kill me.",
-                    "It was the best of times, it was the worst of times.",
-                    "It was the age of wisdom, it was the age of foolishness.",
-                    "The Earth exhibit is one of the strangest collections of our zoo: 7.59 billion humans and trillions of other biological beings that are totally unaware they are captive and being watched by us.",
-                    "I am never coming back to this place.",
-                    "If you are interested in stories with happy endings, you will be better off reading some other book.",
-                    "Shirley made a wish, and there and then the scene around her changed before her very eyes.",
-                    "It came like a lightning bolt.",
-                    "'Welcome to the good place,' the elder said.",
-                    "'Welcome to the bad place,' the elder said.",
-                    "It’s not my fault.",
-                    "I was not sorry when my brother died.",
-                    "Little did I know how important this witness’s testimony would become.",
-                    "With his heart skipping a beat, Ken switches on his PC simulation.",
-                    "Kit’s voice rang out: 'Nobody moves!'"]
+    # try:
+    #     # (i) narrative hooks from datasets online
+    #     dramatic = pd.read_csv('hooks.csv')
+    #     # random = int(time.time())%100
+    #     hook = dramatic.sample(1).opening_line.values[0]
+    # except:
+    #     # (ii) default narrative hooks
+    #     dramatic = ["I didn't mean to kill her.",
+    #                 "A shrill cry echoed in the mist.",
+    #                 "Don't ask me how, but I remember the day I was born.",
+    #                 "I still remember the day I died.",
+    #                 "I still remember how I discovered about my past life.",
+    #                 "I opened my eyes and had no idea where I was.",
+    #                 "I had the same dream every night and it was scaring me.",
+    #                 "'Is this it?' I thought to myself.",
+    #                 "'This cannot be happening.' I thought to myself.",
+    #                 "There was a secret meeting tonight.",
+    #                 "By the time this story ends, five persons' lives will be changed forever, including yours.",
+    #                 "It was the year of electrocution.",
+    #                 "It was the year 2020.",
+    #                 "It was the year humans discovered the secrets laying beneath the ear of the Great Sphinx of Giza.",
+    #                 "It was the the day that led to Earth's last human civilisation.",
+    #                 "It was the year COVID-19 pandemic finally ended.",
+    #                 "It was the day that led to the Moon's crash onto Earth.",
+    #                 "It was the day that led to Donald Trump's presidency.",
+    #                 "It was the day that led to the COVID-19 pandemic.",
+    #                 "It was the day the aliens arrived.",
+    #                 "I am an inmate at a mental hospital: this is what happens in my mind, every day.",
+    #                 "I went back in time.",
+    #                 "I am doing it again, but this time there will be no witnesses.",
+    #                 "I had never seen a ghost.  But like they say, there is a first time for everything.",
+    #                 "Am I in heaven?  What happened to me?",
+    #                 "I couldn't tell if I was in one of my dreams or reality.",
+    #                 "'You were a key eyewitness to this major accident. Please tell our viewers what you saw.'",
+    #                 "My neighbour says my cat is threatening to kill me.",
+    #                 "It was the best of times, it was the worst of times.",
+    #                 "It was the age of wisdom, it was the age of foolishness.",
+    #                 "The Earth exhibit is one of the strangest collections of our zoo: 7.59 billion humans and trillions of other biological beings that are totally unaware they are captive and being watched by us.",
+    #                 "I am never coming back to this place.",
+    #                 "If you are interested in stories with happy endings, you will be better off reading some other book.",
+    #                 "Shirley made a wish, and there and then the scene around her changed before her very eyes.",
+    #                 "It came like a lightning bolt.",
+    #                 "'Welcome to the good place,' the elder said.",
+    #                 "'Welcome to the bad place,' the elder said.",
+    #                 "It’s not my fault.",
+    #                 "I was not sorry when my brother died.",
+    #                 "Little did I know how important this witness’s testimony would become.",
+    #                 "With his heart skipping a beat, Ken switches on his PC simulation.",
+    #                 "Kit’s voice rang out: 'Nobody moves!'"]
 
-        # Randomnisation because random.choice is not random enough... (prone to recurring pattern)
-        random_rounds = int(time.time()) % 10
-        for round in range(random_rounds):
-            random.shuffle(dramatic)
+    #     # Randomnisation because random.choice is not random enough... (prone to recurring pattern)
+    #     random_rounds = int(time.time()) % 10
+    #     for round in range(random_rounds):
+    #         random.shuffle(dramatic)
 
-        hook = random.choice(dramatic)
+    #     hook = random.choice(dramatic)
+    import csv
+    
+    # (i) narrative hooks from datasets online
+    with open('hooks.txt', 'r') as f:
+        dramatic = [line.strip() for line in f]
+
+    # Randomnisation because random.choice is not random enough... (prone to recurring pattern)
+    random_rounds = int(time.time()) % 10
+    for round in range(random_rounds):
+        random.shuffle(dramatic)
+
+    hook = random.choice(dramatic)
+
+    print("Hook used", hook)
 
     return hook
 
